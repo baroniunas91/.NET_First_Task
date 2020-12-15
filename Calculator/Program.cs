@@ -33,14 +33,27 @@ namespace Calculator
                         operation = "/";
                     }
                 }
-
+                bool fail = false;
                 string[] numbers = combination.Split(operation);
-                List<int> numbersList = new List<int>();
+                for (int i = 0; i < numbers.Length; i++)
+                {
+                    if(numbers[i].Contains(".")) {
+                        fail = true;
+                        //numbers[i].Replace('.', ',');
+                    }
+                }
+                if(fail)
+                {
+                    Console.WriteLine("Nevalidu");
+                    combination = Console.ReadLine();
+                    continue;
+                }
+                List<double> numbersList = new List<double>();
                 foreach (var item in numbers)
                 {
                     if (item != "")
                     {
-                        int num = int.Parse(item.ToString());
+                        double num = double.Parse(item.ToString());
                         numbersList.Add(num);
                     }
 
